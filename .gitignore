@@ -1,0 +1,8 @@
+resources.aps
+x64/
+multiOTPCredentialProvider.vcxproj.user
+.vs/
+installer/*.exe
+Debug
+Release
+installer/multiotp-credential-provider.log
