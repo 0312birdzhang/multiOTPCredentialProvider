@@ -1106,12 +1106,16 @@ HRESULT multiotp_request(_In_ PCWSTR username,
 		wcscat_s(cmd, 2048, L" ");
 	}
    
+    wcscat_s(cmd, 2048, L"-u");
+    wcscat_s(cmd, 2048, L" ");
 	wcscat_s(cmd, 2048, L"\"");
 	wcscat_s(cmd, 2048, username);
 	wcscat_s(cmd, 2048, L"\"");
 	wcscat_s(cmd, 2048, L" ");
 
 	if (wcslen(PREV_OTP) > 0) {
+        wcscat_s(cmd, 2048, L"-pt");
+        wcscat_s(cmd, 2048, L" ");
 		wcscat_s(cmd, 2048, L"\"");
 		if (wcslen(PREFIX_PASS) > 0) {
 			wcscat_s(cmd, 2048, PREFIX_PASS);
@@ -1121,6 +1125,8 @@ HRESULT multiotp_request(_In_ PCWSTR username,
 		wcscat_s(cmd, 2048, L" ");
 	}
 
+    wcscat_s(cmd, 2048, L"-t");
+    wcscat_s(cmd, 2048, L" ");
 	wcscat_s(cmd, 2048, L"\"");
 	if ((wcslen(PREFIX_PASS) > 0) && (wcslen(PREV_OTP) <= 0)) {
 		wcscat_s(cmd, 2048, PREFIX_PASS);
@@ -1165,25 +1171,33 @@ HRESULT multiotp_request(_In_ PCWSTR username,
 		server_timeout = readRegistryValueInteger(CONF_SERVER_TIMEOUT, server_timeout);
 		wchar_t server_timeout_string[1024];
 		_ultow_s(server_timeout, server_timeout_string, 10);
-		wcscpy_s(options, 2048, L"-server-timeout=");
+		// wcscpy_s(options, 2048, L"-server-timeout=");
+        wcscpy_s(options, 2048, L"-timeout");
+        wcscat_s(options, 2048, L" ");
 		wcscat_s(options, 2048, server_timeout_string);
 		wcscat_s(options, 2048, L" ");
 
 		server_cache_level = readRegistryValueInteger(CONF_CACHE_ENABLED, server_cache_level);
 		wchar_t server_cache_level_string[1024];
 		_ultow_s(server_cache_level, server_cache_level_string, 10);
-		wcscat_s(options, 2048, L"-server-cache-level=");
+		// wcscat_s(options, 2048, L"-server-cache-level=");
+        wcscat_s(options, 2048, L"-cache");
+        wcscat_s(options, 2048, L" ");
 		wcscat_s(options, 2048, server_cache_level_string);
 		wcscat_s(options, 2048, L" ");
 
 		if (readRegistryValueString(CONF_SERVERS, &servers, L"") > 1) {
-			wcscat_s(options, 2048, L"-server-url=");
+			// wcscat_s(options, 2048, L"-server-url=");
+            wcscat_s(options, 2048, L"-s");
+            wcscat_s(options, 2048, L" ");
 			wcscat_s(options, 2048, servers);
 			wcscat_s(options, 2048, L" ");
 		}
 
 		if (readRegistryValueString(CONF_SHARED_SECRET, &shared_secret, L"ClientServerSecret") > 1) {
-			wcscat_s(options, 2048, L"-server-secret=");
+			// wcscat_s(options, 2048, L"-server-secret=");
+            wcscat_s(options, 2048, L"-secret");
+            wcscat_s(options, 2048, L" ");
 			wcscat_s(options, 2048, shared_secret);
 			wcscat_s(options, 2048, L" ");
 		}
@@ -1199,20 +1213,20 @@ HRESULT multiotp_request(_In_ PCWSTR username,
 			appname[npath] = '\\';
 			appname[npath + 1] = '\0';
 		}
-		//wcscat_s(appname, 2048, L"multiotp.exe");
+		wcscat_s(appname, 2048, L"multiotp.exe");
         //mogai stat
-        wcscat_s(appname, 2048, L"php\\php.exe");
-        wcscat_s(appname, 2048, L"\"");
-        wcscat_s(appname, 2048, L" ");
-        
-        wcscat_s(appname, 2048, L"\"");
-        wcscat_s(appname, 2048, path);
-		size_t npath1 = wcslen(appname);
-		if (appname[npath1 - 1] != '\\' && appname[npath1 - 1] != '/') {
-			appname[npath1] = '\\';
-			appname[npath1 + 1] = '\0';
-		}
-        wcscat_s(appname, 2048, L"php\\multiotp.windows.php");
+        // wcscat_s(appname, 2048, L"php\\php.exe");
+        // wcscat_s(appname, 2048, L"\"");
+        // wcscat_s(appname, 2048, L" ");
+
+        // wcscat_s(appname, 2048, L"\"");
+        // wcscat_s(appname, 2048, path);
+		// size_t npath1 = wcslen(appname);
+		// if (appname[npath1 - 1] != '\\' && appname[npath1 - 1] != '/') {
+		// 	appname[npath1] = '\\';
+		// 	appname[npath1 + 1] = '\0';
+		// }
+        // wcscat_s(appname, 2048, L"php\\multiotp.windows.php");
         //mogai end
 		wcscat_s(appname, 2048, L"\"");
 		wcscat_s(appname, 2048, L" ");
