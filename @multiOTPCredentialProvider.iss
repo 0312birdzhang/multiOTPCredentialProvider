@@ -69,7 +69,7 @@ DisableReadyMemo=no
 Source: "java\multiotp.exe"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: AfterInstallProcedure
 Source: "x64\Release\multiOTPCredentialProvider.dll"; DestDir: "{sys}"; Flags: ignoreversion; Check: Is64BitInstallMode
 Source: "Release\multiOTPCredentialProvider.dll"; DestDir: "{sys}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-Source: "java\jre"; DestDir: "{app}\jre"; Flags: ignoreversion createallsubdirs recursesubdirs
+Source: "java\jre\*"; DestDir: "{app}\jre\"; Flags: ignoreversion createallsubdirs recursesubdirs
 ; Source: "stable\templates\template.html"; DestDir: "{app}\templates"; Flags: ignoreversion
 ; Source: "stable\templates\emailtemplate.html"; DestDir: "{app}\templates"; Flags: ignoreversion
 ; Source: "stable\templates\scratchtemplate.html"; DestDir: "{app}\templates"; Flags: ignoreversion
@@ -728,7 +728,6 @@ var
   // ResultCode: Integer;
   TmpFileName: string;
   ExecStdout: AnsiString;
-  MyTest: string;
 
 begin
 
@@ -831,17 +830,13 @@ begin
     end else begin
       OTPUsername := UserName
     end;
-    MyTest := '0';
     if (ERROR_LOGON_FAILURE = ErrorCode) then begin
       testButtonResult.Caption := ExpandConstant('{cm:multiOTPWindowsUsernameOrPasswordIncorrect}');
-      MyTest := '1';
     end else if (ERROR_SUCCESS <> ErrorCode) then begin
       testButtonResult.Caption := ExpandConstant('{cm:multiOTPWindowsLoginFailed}: ') + SysErrorMessage(DLLGetLastError);
-      MyTest := '2';
     //end else if Not Exec(ExpandConstant('{app}\multiotp.exe'), '-cp -u "' + OTPUsername + '" -t "' + testOtpdEdit.Text + '"', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then begin
     end else if Not Exec('>', 'cmd.exe /C  multiotp.exe -cp -u "' + OTPUsername + '" -t "' + PrefixPass + testOtpdEdit.Text + '"', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then begin
     //end else if Not Exec('>', 'cmd.exe /C multiotp.exe -cp -version > "' + TmpFileName + '"', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then begin
-      MyTest := '3';
       MsgBox(ExpandConstant('{cm:multiOTPSystemErrorDuringmultiOTPTest}') + ' ('+IntToStr(ResultCode)+')', mbCriticalError, MB_OK);
       ResultCode := 99;
     end else if (0 = ResultCode) then begin
@@ -864,7 +859,7 @@ begin
     end else if (99 = ResultCode) then begin
       testButtonResult.Caption := ExpandConstant('{cm:multiOTPReturnCode99}');
     end else begin
-      testButtonResult.Caption := ExpandConstant('{cm:multiOTPReturnCodePrefix}') + '+++' + MyTest + '+++ ' + IntToStr(ResultCode) + ExpandConstant('{cm:multiOTPReturnCodeSuffix}');
+      testButtonResult.Caption := ExpandConstant('{cm:multiOTPReturnCodePrefix}') + IntToStr(ResultCode) + ExpandConstant('{cm:multiOTPReturnCodeSuffix}');
     end;
   end;
 
@@ -1063,7 +1058,7 @@ procedure InitializeWizard;
 
 begin
   // Default values
-  multiOTPDefaultPrefix := '';
+  multiOTPDefaultPrefix := '.';
   multiOTPLoginTitle := 'multiOTP';
   multiOTPServers := 'https://popspi01.gz.flamingo-inc.com/validate/check';
   multiOTPServerTimeout := 5;

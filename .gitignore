@@ -6,3 +6,5 @@ installer/*.exe
 Debug
 Release
 installer/multiotp-credential-provider.log
+java/multiotp.exe
+java/multiotp.jar

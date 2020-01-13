@@ -1245,34 +1245,33 @@ HRESULT multiotp_request(_In_ PCWSTR username,
 				GetExitCodeProcess(pi.hProcess, &exitCode);
 
 				if (DEVELOP_MODE) PrintLn("multiotp.exe Exit Code: %d", exitCode);
-
-				// hr = exitCode;
+				hr = exitCode;
 				CloseHandle(pi.hProcess);
 				CloseHandle(pi.hThread);
 
 				// Read the data written to the pipe
-				DWORD bytesInPipe = 0;
-				bSuccess = TRUE;
-				while (bSuccess && (bytesInPipe == 0)) {
-					bSuccess = PeekNamedPipe(g_hChildStd_OUT_Rd, NULL, 0, NULL, &bytesInPipe, NULL);
-				}
-				if (bytesInPipe != 0) {
-					DWORD dwRead;
-					CHAR *pipeContents = new CHAR[bytesInPipe];
-					bSuccess = ReadFile(g_hChildStd_OUT_Rd, pipeContents, bytesInPipe, &dwRead, NULL);
-					if (!(!bSuccess || dwRead == 0)) {
-						std::stringstream stream(pipeContents);
-						std::string str;
-						while (getline(stream, str))
-						{
-							if (DEVELOP_MODE) PrintLn(CStringW(str.c_str()));
-							if (str.find(MULTIOTP_CHECK) != std::string::npos) {
-								if (DEVELOP_MODE) PrintLn("Executable string info detected!");
-								hr = exitCode;
-							}
-						}
-					}
-				}
+				// DWORD bytesInPipe = 0;
+				// bSuccess = TRUE;
+				// while (bSuccess && (bytesInPipe == 0)) {
+				// 	bSuccess = PeekNamedPipe(g_hChildStd_OUT_Rd, NULL, 0, NULL, &bytesInPipe, NULL);
+				// }
+				// if (bytesInPipe != 0) {
+				// 	DWORD dwRead;
+				// 	CHAR *pipeContents = new CHAR[bytesInPipe];
+				// 	bSuccess = ReadFile(g_hChildStd_OUT_Rd, pipeContents, bytesInPipe, &dwRead, NULL);
+				// 	if (!(!bSuccess || dwRead == 0)) {
+				// 		std::stringstream stream(pipeContents);
+				// 		std::string str;
+				// 		while (getline(stream, str))
+				// 		{
+				// 			if (DEVELOP_MODE) PrintLn(CStringW(str.c_str()));
+				// 			if (str.find(MULTIOTP_CHECK) != std::string::npos) {
+				// 				if (DEVELOP_MODE) PrintLn("Executable string info detected!");
+				// 				hr = exitCode;
+				// 			}
+				// 		}
+				// 	}
+				// }
 			}
 		}
 		CoTaskMemFree(path);
