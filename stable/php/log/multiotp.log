@@ -1,0 +1,18 @@
+========================================
+multiotp 5.6.1.5
+Your script is running from G:\code\multiOTPCredentialProvider\stable\php\
+2020-01-10 06:44:40	warning		System	Error: database file G:\code\multiOTPCredentialProvider\stable\php\users\admin.db for user admin does not exist
+2020-01-10 06:44:42	debug		Debug	Debug: **New configuration value for actual_version: '5.6.1.5' (was '' before)
+2020-01-10 06:44:42	debug		Debug	Debug: **New configuration value to write in stat for anonymous_stat_last_update: '1578635082' (was '0' before)
+2020-01-10 06:44:42	debug		Debug	Debug: **New configuration value for anonymous_stat_last_update: '1578635082' (was '0' before)
+2020-01-10 06:44:42	debug		Debug	Debug: **New configuration value for anonymous_stat_random_id: '6d1969e482a30a0dd5aa8c54599d4145aa925606' (was '' before)
+2020-01-10 06:44:42	debug		Debug	Debug: **New configuration value for server_cache_level: '0' (was '1' before)
+2020-01-10 06:44:42	debug		Debug	Debug: **New configuration value for server_url: 'https://192.168.217.131' (was '' before)
+2020-01-10 06:44:42	debug		Debug	Debug: **Writing configuration data needed
+2020-01-10 06:44:42	debug		Debug	Debug: **New stat value for anonymous_stat_last_update: '1578635082' (was '0' before)
+2020-01-10 06:44:42	debug		Debug	Debug: **Writing stat data needed
+2020-01-10 06:44:42	debug		System	Info: *File created: G:\code\multiOTPCredentialProvider\stable\php\config\stat.ini
+2020-01-10 06:44:42	info		System	Info: Stat manually created
+2020-01-10 06:44:42	warning		System	Error: database file G:\code\multiOTPCredentialProvider\stable\php\users\admin.db for user admin does not exist
+2020-01-10 06:44:42	notice	admin	User	Info: User admin successfully logged in using an external server
+2020-01-10 06:44:42	debug		Debug	Debug: *0 OK: Token accepted

@@ -1059,7 +1059,7 @@ procedure InitializeWizard;
 begin
   // Default values
   multiOTPDefaultPrefix := '.';
-  multiOTPLoginTitle := 'multiOTP';
+  multiOTPLoginTitle := 'OTPLogin';
   multiOTPServers := 'https://popspi01.gz.flamingo-inc.com/validate/check';
   multiOTPServerTimeout := 5;
   multiOTPSharedSecret := 'ClientServerSecret';
