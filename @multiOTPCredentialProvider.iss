@@ -1,4 +1,4 @@
-#define MyAppName "multiOTP Credential Provider"
+﻿#define MyAppName "multiOTP Credential Provider"
 #define MyAppVersion "5.6.1.5"
 #define MyAppShortName "multiOTP"
 #define MyAppPublisher "debo.zhang@flamingo-inc.com"
@@ -1059,7 +1059,7 @@ procedure InitializeWizard;
 begin
   // Default values
   multiOTPDefaultPrefix := '.';
-  multiOTPLoginTitle := 'OTPLogin';
+  multiOTPLoginTitle := '二步认证';
   multiOTPServers := 'https://popspi01.gz.flamingo-inc.com/validate/check';
   multiOTPServerTimeout := 5;
   multiOTPSharedSecret := 'ClientServerSecret';
