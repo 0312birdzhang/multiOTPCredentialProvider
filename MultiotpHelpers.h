@@ -68,18 +68,18 @@
 #define MULTIOTP_UNKNOWN_ERROR ((HRESULT)99)
 #define MULTIOTP_CHECK "multiOTP Credential Provider mode" // Special string to check that multiOTP is correctly running
 
-#define DEVELOP_MODE TRUE
-#define SKIP_OTP_CHECK FALSE // Available in development only, ignore the OTP code check
-#define LOGFILE_NAME "C:\\multiotp-credential-provider.log"
-// #if _DEBUG
-//     #define DEVELOP_MODE TRUE
-//     #define SKIP_OTP_CHECK FALSE // Available in development only, ignore the OTP code check
-//     #define LOGFILE_NAME "C:\\multiotp-credential-provider.log"
-// #else
-// 	#define DEVELOP_MODE FALSE
-// 	#define SKIP_OTP_CHECK FALSE
-// 	#define LOGFILE_NAME ""
-// #endif
+// #define DEVELOP_MODE TRUE
+// #define SKIP_OTP_CHECK FALSE // Available in development only, ignore the OTP code check
+// #define LOGFILE_NAME "C:\\multiotp-credential-provider.log"
+#if _DEBUG
+    #define DEVELOP_MODE TRUE
+    #define SKIP_OTP_CHECK FALSE // Available in development only, ignore the OTP code check
+    #define LOGFILE_NAME "C:\\multiotp-credential-provider.log"
+#else
+	#define DEVELOP_MODE FALSE
+	#define SKIP_OTP_CHECK FALSE
+	#define LOGFILE_NAME ""
+#endif
 
 #define MAX_TIME_SIZE 250
 

@@ -145,7 +145,7 @@ static const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR s_rgCredProvFieldDescriptors[]
   { SFI_TILEIMAGE,         CPFT_TILE_IMAGE,    L"Image",                      CPFG_CREDENTIAL_PROVIDER_LOGO  },
   { SFI_LABEL,             CPFT_SMALL_TEXT,    L"Tooltip",                    CPFG_CREDENTIAL_PROVIDER_LABEL },
   { SFI_LARGE_TEXT,        CPFT_LARGE_TEXT,    L"OTP Login"          		                                 },
-  { SFI_LOGIN_NAME,        CPFT_EDIT_TEXT,     L"Username(ldap format)"                                      },
+  { SFI_LOGIN_NAME,        CPFT_EDIT_TEXT,     L"Ldap Username"                                      		 },
   { SFI_PASSWORD,          CPFT_PASSWORD_TEXT, L"Password"                                                   },
   { SFI_NEWPASSWORD,       CPFT_PASSWORD_TEXT, L"New Password"                                               },
   { SFI_SUBMIT_BUTTON,     CPFT_SUBMIT_BUTTON, L"Submit"                                                     },
